@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>skills Enhancement· login first, youtube cards</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #f8fafd;
+            color: #1e293b;
+            line-height: 1.5;
+        }
+
+        .app {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem 6rem;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* --- navbar (AI left, login right) --- */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #0f2b4b, #1e4a7a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .home-btn, .ai-chat-btn {
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1e4a7a;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            transition: background 0.2s;
+            border: 1.5px solid transparent;
+        }
+
+        .home-btn:hover, .ai-chat-btn:hover {
+            background: #e6edf6;
+            border-color: #cbd6e6;
+        }
+
+        .ai-chat-btn i {
+            font-size: 1.2rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: white;
+            color: #1e4a7a;
+            border: 1.5px solid #dce3ec;
+        }
+
+        .btn-primary {
+            background: #1e4a7a;
+            color: white;
+            border: 1.5px solid #1e4a7a;
+        }
+
+        .btn-primary:hover {
+            background: #123a5e;
+        }
+
+        .btn-outline:hover {
+            background: #f1f5f9;
+        }
+
+        /* --- hero (visible after login) --- */
+        .hero {
+            text-align: center;
+            background: white;
+            padding: 3.5rem 2rem 2.5rem;
+            border-radius: 36px;
+            box-shadow: 0 15px 30px -10px rgba(0,30,60,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(145deg, #102b42, #1e4a7a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #475569;
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+            font-weight: 400;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-buttons .btn {
+            padding: 0.8rem 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* --- stats row --- */
+        .stats-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2.5rem 0 3.5rem;
+        }
+
+        .stat-item {
+            background: white;
+            border-radius: 28px;
+            padding: 1.5rem 2.2rem;
+            min-width: 160px;
+            text-align: center;
+            box-shadow: 0 8px 18px -6px rgba(0,0,0,0.04);
+            border: 1px solid #eef2f6;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1e4a7a;
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            color: #546a7a;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        /* --- courses header --- */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin: 2.5rem 0 1.8rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f2b4b;
+        }
+
+        .section-header span {
+            color: #4b6589;
+            font-weight: 500;
+            background: #e9eff7;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+        }
+
+        /* --- course grid (side‑by‑side, responsive) --- */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 10px 20px -8px rgba(0,0,0,0.06);
+            border: 1px solid #edf2f7;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -10px rgba(25,70,120,0.15);
+            border-color: #cbd9ed;
+        }
+
+        .course-thumbnail {
+            position: relative;
+            height: 150px;
+            background: linear-gradient(145deg, #4a7bb5, #1e4a7a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .course-thumbnail i {
+            font-size: 3.5rem;
+            opacity: 0.9;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.5);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            border: 2px solid white;
+            opacity: 0.9;
+            transition: 0.2s;
+        }
+
+        .course-card:hover .play-overlay {
+            background: #a9eb52;
+            border-color: #87c954;
+        }
+
+        .course-content {
+            padding: 1.2rem 1.2rem 0.8rem;
+        }
+
+        .course-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+            color: #0f2b4b;
+        }
+
+        .course-author {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .course-author i {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        .course-badge {
+            background: #edf3fc;
+            color: #1e4a7a;
+            font-weight: 600;
+            font-size: 0.7rem;
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            margin: 0.3rem 0 0.5rem;
+        }
+
+        .course-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1.2rem 1.2rem;
+            border-top: 1px solid #f0f4fa;
+            margin-top: 0.2rem;
+        }
+
+        .course-price {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #1e4a7a;
+        }
+
+        .buy-btn-on-card {
+            background: #1e4a7a;
+            border: none;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.15s;
+            border: 1px solid #1e4a7a;
+        }
+
+        .buy-btn-on-card:hover {
+            background: #123a5e;
+        }
+
+        /* --- modal for video --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 40px;
+            max-width: 800px;
+            width: 90%;
+            padding: 2rem;
+            box-shadow: 0 30px 50px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.8rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #1e4a7a;
+            line-height: 1;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 24px;
+            margin-bottom: 1.5rem;
+            background: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .modal-buy {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .modal-course-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #0f2b4b;
+        }
+
+        .btn-modal-buy {
+            background: #1e4a7a;
+            color: white;
+            border: none;
+            padding: 0.7rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+        .btn-modal-buy:hover { background: #123a5e; }
+
+        /* --- page visibility --- */
+        .page { transition: opacity 0.2s; }
+        .hidden-page { display: none; }
+
+        /* --- login page (initial view) --- */
+        .login-container {
+            max-width: 460px;
+            margin: 4rem auto;
+            background: white;
+            border-radius: 40px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.2);
+        }
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            background: #edf2f8;
+            padding: 0.5rem;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+        }
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 0.8rem;
+            font-weight: 600;
+            border-radius: 40px;
+            cursor: pointer;
+            color: #334e68;
+        }
+        .tab.active {
+            background: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.03);
+            color: #1e4a7a;
+        }
+        .form-group { margin-bottom: 1.5rem; text-align: left; }
+        .form-group label {
+            font-weight: 600; color: #1e344f; display: block; margin-bottom: 0.4rem;
+        }
+        .form-group input {
+            width: 100%; padding: 1rem; border: 1.5px solid #dde3ed;
+            border-radius: 30px; font-size: 1rem; outline: none;
+        }
+        .form-group input:focus { border-color: #1e4a7a; }
+        .btn-form {
+            width: 100%; padding: 1rem; background: #1e4a7a; color: white;
+            font-weight: 700; border: none; border-radius: 40px; font-size: 1.1rem;
+            cursor: pointer;
+        }
+        .demo-hint { font-size: 0.85rem; color: #6f7f9a; margin-top: 1rem; }
+
+        /* --- payment page --- */
+        .payment-container {
+            max-width: 560px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 40px;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 20px 35px -8px rgba(0,30,60,0.15);
+            text-align: center;
+        }
+        .payment-container h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #0f2b4b;
+        }
+        .course-detail {
+            background: #f5f9ff;
+            padding: 1.8rem;
+            border-radius: 28px;
+            margin: 2rem 0;
+        }
+        .course-detail .course-name {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1e4a7a;
+        }
+        .price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #0f2b4b;
+            margin: 1rem 0 0.5rem;
+        }
+        .btn-large {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.2rem;
+            border-radius: 60px;
+            margin: 1rem 0;
+        }
+        .back-link {
+            color: #4b6589;
+            cursor: pointer;
+            text-decoration: underline;
+            font-weight: 500;
+            margin-top: 1.5rem;
+            display: inline-block;
+        }
+
+        /* --- chat widget (toggled by navbar button) --- */
+        .chat-widget {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 360px;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 25px 45px -10px rgba(0,20,40,0.3);
+            border: 1px solid #e2eaf2;
+            overflow: hidden;
+            z-index: 1000;
+            transition: transform 0.25s, opacity 0.2s;
+        }
+        .chat-widget.closed {
+            transform: scale(0.8);
+            opacity: 0;
+            pointer-events: none;
+        }
+        .chat-header {
+            background: #1e4a7a;
+            color: white;
+            padding: 1.2rem 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .chat-messages {
+            height: 280px;
+            overflow-y: auto;
+            padding: 1.5rem;
+            background: #fafdff;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .message {
+            max-width: 80%;
+            padding: 0.7rem 1.2rem;
+            border-radius: 24px;
+            font-size: 0.95rem;
+        }
+        .user-message {
+            align-self: flex-end;
+            background: #1e4a7a;
+            color: rgb(238, 229, 229);
+            border-bottom-right-radius: 4px;
+        }
+        .bot-message {
+            align-self: flex-start;
+            background: #ecf3fa;
+            color: #1e2f40;
+            border-bottom-left-radius: 4px;
+        }
+        .chat-input-area {
+            display: flex;
+            border-top: 1px solid #dde5f0;
+            padding: 0.8rem;
+            background: rgb(234, 226, 226);
+        }
+        .chat-input-area input {
+            flex: 1;
+            border: none;
+            padding: 0.8rem 1rem;
+            border-radius: 40px;
+            background: #cfdcea;
+            outline: none;
+        }
+        .chat-input-area button {
+            background: none; border: none; color: #1e4a7a;
+            font-size: 1.5rem; margin-left: 0.5rem; cursor: pointer;
+        }
+
+        .footer-note {
+            margin-top: 5rem;
+            text-align: center;
+            color: #8599b5;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+<div class="app" id="app">
+    <!-- navbar with AI left, login right -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="logo">skill<span style="font-weight: 400;">Enhancer</span></div>
+            <button class="home-btn" id="homeNavBtn"><i class="fas fa-home"></i> Home</button>
+            <button class="ai-chat-btn" id="aiChatNavBtn"><i class="fas fa-robot"></i> AI assistance</button>
+        </div>
+        <div class="nav-buttons">
+            <button class="btn btn-outline" id="loginNavBtn"><i class="fas fa-sign-in-alt" style="margin-right:6px;"></i>Log in</button>
+            <button class="btn btn-primary" id="signupNavBtn">Sign up free</button>
+        </div>
+    </nav>
+
+    <!-- LOGIN PAGE (visible by default) -->
+    <div id="login-page" class="page">
+        <div class="login-container">
+            <div class="tabs" id="loginTabs">
+                <div class="tab active" data-tab="signin">Sign in</div>
+                <div class="tab" data-tab="signup">Sign up</div>
+            </div>
+            <div id="signin-form" class="form-tab">
+                <div class="form-group"><label>Email</label><input type="email" id="signinEmail" placeholder="your@email.com"></div>
+                <div class="form-group"><label>Password</label><input type="password" id="signinPassword" placeholder="••••••••"></div>
+                <button class="btn-form" id="signinBtn">Sign in</button>
+                <p class="demo-hint">(any non-empty credentials work)</p>
+            </div>
+            <div id="signup-form" class="form-tab" style="display: none;">
+                <div class="form-group"><label>Email</label><input type="email" id="signupEmail" placeholder="your@email.com"></div>
+                <div class="form-group"><label>Password</label><input type="password" id="signupPassword" placeholder="min 4 chars"></div>
+                <div class="form-group"><label>Confirm password</label><input type="password" id="signupConfirm" placeholder="••••••••"></div>
+                <button class="btn-form" id="signupBtn">Create account</button>
+                <p class="demo-hint">demo sign up</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOME PAGE (hidden initially) -->
+    <div id="home-page" class="page hidden-page">
+        <div class="hero">
+            <h1>Skills for your present<br>and your future.</h1>
+            <p>World-class courses taught by expert instructors. Start learning today and unlock your potential.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" id="browseCoursesBtn"><i class="fas fa-book-open" style="margin-right:8px;"></i>Browse courses</button>
+                <button class="btn btn-outline" id="heroSignupBtn">Sign up free</button>
+            </div>
+        </div>
+
+        <!-- 4 stat boxes -->
+        <div class="stats-row">
+            <div class="stat-item"><div class="stat-number">5+</div><div class="stat-label">Years of excellence</div></div>
+            <div class="stat-item"><div class="stat-number">500K+</div><div class="stat-label">Students</div></div>
+            <div class="stat-item"><div class="stat-number">4.7</div><div class="stat-label">Trustpilot rating</div></div>
+            <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Satisfaction</div></div>
+        </div>
+
+        <div class="section-header">
+            <h2>All courses</h2>
+            <span>10 courses — new content added every month</span>
+        </div>
+
+        <!-- course grid (side‑by‑side) -->
+        <div id="courseGrid" class="course-grid"></div>
+        <p style="color:#4323b5; margin-top:1rem;"><i class="far fa-clock"></i> including full tutorial 2023, docker, SQL, Python ...</p>
+    </div>
+
+    <!-- PAYMENT PAGE -->
+    <div id="payment-page" class="page hidden-page">
+        <div class="payment-container">
+            <h2><i class="fas fa-lock" style="margin-right:10px;"></i>Checkout</h2>
+            <div class="course-detail">
+                <div class="course-name" id="paymentCourseName">FULL TUTORIAL 2023</div>
+                <div class="price" id="paymentCoursePrice">₹5,999</div>
+                <p style="color:#8da7cb;">Lifetime access · certificate</p>
+            </div>
+            <button class="btn btn-primary btn-large" id="buyNowBtn"><i class="fas fa-credit-card"></i> Buy now</button>
+            <div class="back-link" id="backToHomeFromPayment">← Back to courses</div>
+        </div>
+    </div>
+
+    <div class="footer-note">✨ login first · side‑by‑side courses · colourful youtube thumbnails</div>
+</div>
+
+<!-- VIDEO MODAL -->
+<div id="videoModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" id="closeModal">&times;</span>
+        <div id="videoContainer" class="video-container"></div>
+        <div class="modal-buy">
+            <span class="modal-course-title" id="modalCourseTitle"></span>
+            <button class="btn-modal-buy" id="modalBuyBtn"><i class="fas fa-shopping-cart"></i> Buy now</button>
+        </div>
+    </div>
+</div>
+
+<!-- CHAT WIDGET (hidden initially, toggled by navbar AI button) -->
+<div class="chat-widget closed" id="chatWidget">
+    <div class="chat-header" id="chatHeader">
+        <span><i class="fas fa-robot" style="margin-right:8px;"></i>AI assistant</span>
+        <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+        <div class="message bot-message">👋 Namaste! I'm your AI assistant. Ask me about courses, prices in INR, or anything.</div>
+    </div>
+    <div class="chat-input-area">
+        <input type="text" id="chatInput" placeholder="Ask something..." />
+        <button id="sendChatBtn"><i class="fas fa-paper-plane"></i></button>
+    </div>
+</div>
+
+<script>
+    (function() {
+        // course data with Indian prices, YouTube IDs, author names, and icon for thumbnail
+        const courses = [
+            { name: "FULL TUTORIAL 2023", price: "₹5,999", videoId: "dQw4w9WgXcQ", author: "Sarah Chen", icon: "fa-play-circle" },
+            { name: "docker in 2 hours", price: "₹2,999", videoId: "fqMOX6JJhGo", author: "Michael K.", icon: "fa-docker" },
+            { name: "SQL in 4 hours", price: "₹4,499", videoId: "7S_tz1z_5bA", author: "Priya Sharma", icon: "fa-database" },
+            { name: "PYTHON FULL COURSE", price: "₹6,999", videoId: "rfscVS0vtbw", author: "James Wilson", icon: "fa-python" },
+            { name: "React in 6 hours", price: "₹3,999", videoId: "bMknfKXIFA8", author: "Alex Johnson", icon: "fa-react" },
+            { name: "AWS Certified", price: "₹7,999", videoId: "3hLmDS179YE", author: "Deepak Patel", icon: "fa-aws" },
+            { name: "JavaScript Basics", price: "₹3,499", videoId: "W6NZfCO5SIk", author: "Elena Rodriguez", icon: "fa-js" },
+            { name: "Machine Learning A-Z", price: "₹8,999", videoId: "NWONeJKn6kc", author: "Dr. Anil Kumar", icon: "fa-brain" },
+            { name: "Cyber Security", price: "₹5,499", videoId: "z5nc9MDbvkw", author: "Rajesh Iyer", icon: "fa-shield-alt" },
+            { name: "Data Science", price: "₹5,999", videoId: "ua-CiDNNj30", author: "Lisa Wong", icon: "fa-chart-line" }
+        ];
+
+        // DOM elements
+        const homePage = document.getElementById('home-page');
+        const loginPage = document.getElementById('login-page');
+        const paymentPage = document.getElementById('payment-page');
+        const courseGrid = document.getElementById('courseGrid');
+        const paymentCourseName = document.getElementById('paymentCourseName');
+        const paymentCoursePrice = document.getElementById('paymentCoursePrice');
+        const buyNowBtn = document.getElementById('buyNowBtn');
+        const backHomePayment = document.getElementById('backToHomeFromPayment');
+        const homeNavBtn = document.getElementById('homeNavBtn');
+        const loginNavBtn = document.getElementById('loginNavBtn');
+        const signupNavBtn = document.getElementById('signupNavBtn');
+        const browseCoursesBtn = document.getElementById('browseCoursesBtn');
+        const heroSignupBtn = document.getElementById('heroSignupBtn');
+        const loginTabs = document.querySelectorAll('.tab');
+        const signinForm = document.getElementById('signin-form');
+        const signupForm = document.getElementById('signup-form');
+        const signinBtn = document.getElementById('signinBtn');
+        const signupBtn = document.getElementById('signupBtn');
+        // modal
+        const modal = document.getElementById('videoModal');
+        const closeModal = document.getElementById('closeModal');
+        const videoContainer = document.getElementById('videoContainer');
+        const modalCourseTitle = document.getElementById('modalCourseTitle');
+        const modalBuyBtn = document.getElementById('modalBuyBtn');
+        // chat
+        const aiChatNavBtn = document.getElementById('aiChatNavBtn');
+        const chatWidget = document.getElementById('chatWidget');
+        const chatHeader = document.getElementById('chatHeader');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendChatBtn = document.getElementById('sendChatBtn');
+
+        let currentCourse = null;
+
+        function showPage(page) {
+            homePage.classList.add('hidden-page');
+            loginPage.classList.add('hidden-page');
+            paymentPage.classList.add('hidden-page');
+            if (page === 'home') homePage.classList.remove('hidden-page');
+            if (page === 'login') loginPage.classList.remove('hidden-page');
+            if (page === 'payment') paymentPage.classList.remove('hidden-page');
+        }
+
+        // open video modal
+        function openVideoModal(course) {
+            currentCourse = course;
+            modalCourseTitle.innerText = course.name;
+            videoContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${course.videoId}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+            modal.classList.add('active');
+        }
+
+        closeModal.addEventListener('click', () => {
+            modal.classList.remove('active');
+            videoContainer.innerHTML = '';
+        });
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                videoContainer.innerHTML = '';
+            }
+        });
+        modalBuyBtn.addEventListener('click', () => {
+            if (currentCourse) {
+                paymentCourseName.innerText = currentCourse.name;
+                paymentCoursePrice.innerText = currentCourse.price;
+                modal.classList.remove('active');
+                videoContainer.innerHTML = '';
+                showPage('payment');
+            }
+        });
+
+        // render courses with YouTube-style thumbnails
+        function renderCourses() {
+            courseGrid.innerHTML = '';
+            courses.forEach(c => {
+                const card = document.createElement('div');
+                card.className = 'course-card';
+                card.addEventListener('click', (e) => {
+                    if (e.target.closest('.buy-btn-on-card')) return;
+                    openVideoModal(c);
+                });
+                card.innerHTML = `
+                    <div class="course-thumbnail">
+                        <i class="fab ${c.icon}"></i>
+                        <div class="play-overlay"><i class="fas fa-play"></i></div>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-title">${c.name}</div>
+                        <div class="course-author"><i class="fas fa-user-circle"></i> ${c.author}</div>
+                        <div class="course-badge">${c.name.includes('hour') ? '🔥 short' : '📘 course'}</div>
+                    </div>
+                    <div class="course-footer">
+                        <span class="course-price">${c.price}</span>
+                        <button class="buy-btn-on-card"><i class="fas fa-shopping-cart"></i> Buy</button>
+                    </div>
+                `;
+                const buyBtn = card.querySelector('.buy-btn-on-card');
+                buyBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    currentCourse = c;
+                    paymentCourseName.innerText = c.name;
+                    paymentCoursePrice.innerText = c.price;
+                    showPage('payment');
+                });
+                courseGrid.appendChild(card);
+            });
+        }
+
+        // payment -> login
+        buyNowBtn.addEventListener('click', () => {
+            setActiveTab('signin');
+            showPage('login');
+        });
+
+        // navigation & tabs
+        function setActiveTab(tab) {
+            if (tab === 'signin') {
+                signinForm.style.display = 'block';
+                signupForm.style.display = 'none';
+                loginTabs[0].classList.add('active');
+                loginTabs[1].classList.remove('active');
+            } else {
+                signinForm.style.display = 'none';
+                signupForm.style.display = 'block';
+                loginTabs[1].classList.add('active');
+                loginTabs[0].classList.remove('active');
+            }
+        }
+        loginTabs[0].addEventListener('click', () => setActiveTab('signin'));
+        loginTabs[1].addEventListener('click', () => setActiveTab('signup'));
+
+        backHomePayment.addEventListener('click', () => showPage('home'));
+
+        homeNavBtn.addEventListener('click', () => showPage('home'));
+
+        // login/signup buttons in navbar go to login page
+        loginNavBtn.addEventListener('click', () => { setActiveTab('signin'); showPage('login'); });
+        signupNavBtn.addEventListener('click', () => { setActiveTab('signup'); showPage('login'); });
+        heroSignupBtn.addEventListener('click', () => { setActiveTab('signup'); showPage('login'); });
+        browseCoursesBtn.addEventListener('click', () => { showPage('home'); document.querySelector('.section-header').scrollIntoView({ behavior: 'smooth' }); });
+
+        // fake sign in: after success, show home page
+        signinBtn.addEventListener('click', () => {
+            const email = document.getElementById('signinEmail').value.trim();
+            const pwd = document.getElementById('signinPassword').value.trim();
+            if (email && pwd) {
+                alert(`Welcome back, ${email}!`);
+                showPage('home');
+            } else alert('Please enter both fields');
+        });
+
+        signupBtn.addEventListener('click', () => {
+            const email = document.getElementById('signupEmail').value.trim();
+            const pwd = document.getElementById('signupPassword').value.trim();
+            const confirm = document.getElementById('signupConfirm').value.trim();
+            if (email && pwd && pwd === confirm && pwd.length >= 4) {
+                alert(`Account created for ${email}. You are now logged in.`);
+                showPage('home');
+            } else alert('Fill all fields correctly (min 4 chars, match)');
+        });
+
+        // chat functionality
+        function addMessage(text, sender) {
+            const msgDiv = document.createElement('div');
+            msgDiv.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
+            msgDiv.innerText = text;
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        function botReply(userMsg) {
+            const lower = userMsg.toLowerCase();
+            if (lower.includes('hello') || lower.includes('hi') || lower.includes('namaste')) 
+                return "Namaste! 🙏 How can I assist you with our courses today?";
+            if (lower.includes('course')) 
+                return "We offer 10+ courses: Docker (₹2,999), SQL (₹4,499), Python (₹6,999), React (₹3,999), AWS (₹7,999) and more!";
+            if (lower.includes('docker')) return "🐳 Docker in 2 hours – ₹2,999. You can buy it from the course card.";
+            if (lower.includes('sql')) return "🗃️ SQL in 4 hours – ₹4,499. A must for data enthusiasts!";
+            if (lower.includes('python')) return "🐍 Python full course – ₹6,999, includes projects. Check the card!";
+            if (lower.includes('price') || lower.includes('cost') || lower.includes('rupee') || lower.includes('₹')) 
+                return "Prices range from ₹2,999 to ₹8,999. Each course card shows the exact price in INR.";
+            if (lower.includes('buy') || lower.includes('payment')) 
+                return "Click 'Buy' on a course → payment page → 'Buy now' → login/signup (demo).";
+            if (lower.includes('stat') || lower.includes('rating')) 
+                return "We have 5+ years, 500K+ students, 4.7 rating, and 100% satisfaction!";
+            if (lower.includes('thank')) return "You're welcome 😊 Happy learning!";
+            return "I'm a demo AI. Ask about courses, prices in rupees, stats, or just say hi.";
+        }
+        function handleUserMessage() {
+            const msg = chatInput.value.trim();
+            if (!msg) return;
+            addMessage(msg, 'user');
+            chatInput.value = '';
+            setTimeout(() => addMessage(botReply(msg), 'bot'), 400);
+        }
+        sendChatBtn.addEventListener('click', handleUserMessage);
+        chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleUserMessage(); });
+
+        // toggle chat widget via navbar AI button
+        let chatOpen = false;
+        function setChatOpen(open) {
+            if (open) {
+                chatWidget.classList.remove('closed');
+                chatOpen = true;
+            } else {
+                chatWidget.classList.add('closed');
+                chatOpen = false;
+            }
+        }
+        aiChatNavBtn.addEventListener('click', () => setChatOpen(!chatOpen));
+        chatHeader.addEventListener('click', () => setChatOpen(false));
+
+        // initial: show login page, render courses for later
+        renderCourses();
+        showPage('login');
+        setActiveTab('signin');
+    })();
+</script>
+</body>
+</html>
